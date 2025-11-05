@@ -1,5 +1,5 @@
 {
-	"name": "nycu-sdc",
+	"name": "sdc-website",
 	"compatibility_date": "2026-11-05",
 	"assets": {
 		"directory": "./dist",
