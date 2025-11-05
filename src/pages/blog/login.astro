@@ -1,0 +1,41 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+	<section>
+		<h1>部落格編輯器</h1>
+		<p>請點擊下方按鈕以登入 GitHub，完成後您將被重新導向回本站。</p><br />
+		<a href="">登入 GitHub</a>
+	</section>
+	<style>
+		body {
+			background-color: var(--nord1);
+			color: var(--nord6);
+		}
+		section {
+			padding: 2rem 1rem;
+			text-align: center;
+		}
+
+		:global(main) {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		a {
+			display: inline-block;
+			margin-top: 1rem;
+			padding: 0.5rem 1rem;
+			background-color: var(--nord3);
+			color: var(--nord6);
+			text-decoration: none;
+			border-radius: 4px;
+		}
+	</style>
+</Layout>
