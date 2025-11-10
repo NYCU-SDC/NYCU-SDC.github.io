@@ -1,8 +1,8 @@
 ---
-title: "範例文章：認識 NYCU SDC"
+title: "Core System: Everything all in once"
 description: "這是一篇範例文章，介紹交大軟體開發社的基本資訊"
 author: "NYCU SDC"
-pubDate: 2025-11-10
+pubDate: 2024-06-10
 type: "專案成果"
 heroImage: thumbnail.webp
 ---
