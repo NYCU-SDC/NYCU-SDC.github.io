@@ -11,22 +11,37 @@ const posts = (await getCollection("blog"))
 		const dateB = (b.data.pubDate || b.data.date)!;
 		return dateB.valueOf() - dateA.valueOf();
 	});
+
+const filterPosts = posts;
 ---
 
 <Layout>
+	<h1 class="page-title">Blog</h1>
+	<div class="filter-buttons">
+		<button class="filter-btn active" data-filter="all">全部</button>
+		<button class="filter-btn" data-filter="專案成果">專案成果</button>
+		<button class="filter-btn" data-filter="財務報表">財務報表</button>
+		<button class="filter-btn" data-filter="活動公告">活動公告</button>
+	</div>
 	<section>
-		<ul>
+		<ul class="posts-list">
 			{
-				posts.map(post => {
+				posts.map((post, index) => {
 					const postDate = (post.data.pubDate || post.data.date)!;
 					return (
-						<li>
+						<li 
+							data-type={post.data.type || "uncategorized"}
+							class={index === 0 ? "first-post" : ""}
+						>
 							<a href={`/blog/${post.id}/`}>
 								{post.data.heroImage && <Image width={720} height={360} src={post.data.heroImage} alt="" />}
-								<h4 class="title">{post.data.title}</h4>
-								<p class="date">
-									<FormattedDate date={postDate} />
-								</p>
+								<div class="text">
+									<p class="type">{post.data.type}</p>
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={postDate} />
+									</p>
+								</div>
 							</a>
 						</li>
 					);
@@ -35,48 +50,71 @@ const posts = (await getCollection("blog"))
 		</ul>
 	</section>
 	<style>
+		.page-title {
+			color: var(--nord1, #3B4252);
+			font-weight: 400;
+			text-align: center;
+			font-size: 4rem;
+			margin-top: 3rem;
+		}
 		section {
-			max-width: 960px;
+			max-width: 50rem;
 			margin: 0 auto;
-			padding: 2rem 1rem;
+			padding: 2rem 0;
 		}
 		ul {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 2rem;
 			list-style-type: none;
+			justify-content: center;
 			margin: 0;
 			padding: 0;
 		}
 		ul li {
 			width: calc(50% - 1rem);
+			align-items: center;
 		}
 		ul li * {
 			text-decoration: none;
 			transition: 0.2s ease;
 		}
-		ul li:first-child {
-			width: 100%;
+		ul li.first-post {
+			width: 100% !important;
 			margin-bottom: 1rem;
 			text-align: center;
 		}
-		ul li:first-child img {
-			width: 100%;
-		}
-		ul li:first-child .title {
-			font-size: 2.369rem;
+		ul li.first-post img {
+			width: 100% !important;
+			height: 25rem !important;
+			object-fit: cover;
 		}
 		ul li img {
+			width: 100%;
+			height: 12rem;
+			object-fit: cover;
 			margin-bottom: 0.5rem;
 			border-radius: 12px;
 		}
 		ul li a {
 			display: block;
+			color: inherit;
+		}
+		.text {
+			display: flex;
+			flex-direction: column;
+			text-align: left;
+			gap: 0.25rem;
+		}
+		.type {
+			margin: 0;
+			color: var(--nord9, #81A1C1);
 		}
 		.title {
 			margin: 0;
 			color: rgb(var(--black));
 			line-height: 1;
+			font-size: 1.5rem;
 		}
 		.date {
 			margin: 0;
@@ -89,7 +127,35 @@ const posts = (await getCollection("blog"))
 		ul a:hover img {
 			box-shadow: var(--box-shadow);
 		}
+		.filter-buttons {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			margin: 1.5rem auto 2rem;
+		}
+		.filter-btn {
+			padding: 0.25rem 1rem;
+			background: var(--nord4, #D8DEE9);
+			border-color: transparent;
+			border-radius: 1rem;
+			cursor: pointer;
+			font-size: 1rem;
+			transition: all 0.3s ease;
+		}
+		.filter-btn:hover {
+			color: var(--nord9, #81A1C1);
+		}
+		.filter-btn.active {
+			background: var(--nord3, #4C566A);
+			color: var(--nord4, #D8DEE9);
+		}
+		ul li.hidden {
+			display: none;
+		}
 		@media (max-width: 720px) {
+			.filter-buttons {
+				padding: 0 1rem;
+			}
 			ul {
 				gap: 0.5em;
 			}
@@ -105,4 +171,34 @@ const posts = (await getCollection("blog"))
 			}
 		}
 	</style>
+	<script>
+		const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+		const posts = document.querySelectorAll<HTMLLIElement>(".posts-list li");
+		
+		filterButtons.forEach(button => {
+			button.addEventListener("click", () => {
+				const filter = button.dataset.filter;
+
+				filterButtons.forEach(btn => btn.classList.remove("active"));
+				button.classList.add("active");
+				posts.forEach(post => post.classList.remove("first-post"));
+				
+				posts.forEach(post => {
+					const postType = post.dataset.type;
+					
+					if (filter === "all" || postType === filter) {
+						post.classList.remove("hidden");
+					} else {
+						post.classList.add("hidden");
+					}
+				});
+
+				const firstVisible = Array.from(posts).find(post => !post.classList.contains("hidden"));
+				
+				if (firstVisible && filter === "all") {
+					firstVisible.classList.add("first-post");
+				}
+			});
+		});
+	</script>
 </Layout>

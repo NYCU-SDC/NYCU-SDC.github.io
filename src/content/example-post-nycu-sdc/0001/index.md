@@ -1,9 +1,9 @@
 ---
-title: "範例文章：認識 NYCU SDC"
+title: "NYCU SDC 2025 財務報表"
 description: "這是一篇範例文章，介紹交大軟體開發社的基本資訊"
 author: "NYCU SDC"
-pubDate: 2025-11-10
-type: "專案成果"
+pubDate: 2025-06-10
+type: "財務報表"
 heroImage: thumbnail.webp
 ---
 
