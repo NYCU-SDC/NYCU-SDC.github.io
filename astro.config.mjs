@@ -9,5 +9,10 @@ export default defineConfig({
 	build: {
 		format: "directory"
 	},
-	integrations: [sitemap({})]
+	integrations: [sitemap({})],
+	markdown: {
+    shikiConfig: {
+      theme: 'nord'
+    }
+  }
 });
