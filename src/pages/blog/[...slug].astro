@@ -20,11 +20,11 @@ const postDate = post.data.pubDate || post.data.date;
 
 <Layout title={post.data.title} description={post.data.description}>
 	<article>
-		<div class="hero-image">
-			{post.data.heroImage && <Image width={1020} height={510} src={post.data.heroImage} alt="" />}
-		</div>
 		<div class="prose">
-			<div class="title">
+			<div 
+				class="title"
+				style={post.data.heroImage ? `background-image: linear-gradient(0deg, rgba(229, 233, 240, 0.86) 0%, rgba(229, 233, 240, 0.86) 100%), url('${post.data.heroImage.src}');` : ''}
+			>
 				{postDate && (
 					<div class="date">
 						<FormattedDate date={postDate} />
@@ -35,12 +35,11 @@ const postDate = post.data.pubDate || post.data.date;
 						)}
 					</div>
 				)}
-				<h1>{post.data.title}</h1>
-				<label>{post.data.type}</label>
-				<hr />
-				{post.data.author && <p class="author">By {post.data.author}</p>}
-				{post.data.description && <p class="description">{post.data.description}</p>}
+				<h1 style="font-family: Goldman;">{post.data.title}</h1>
+				<span class="type">{post.data.type}</span>
 			</div>
+			{post.data.author && <p class="author">By {post.data.author}</p>}
+			{post.data.description && <p class="description">{post.data.description}</p>}
 			<Content />
 		</div>
 	</article>
@@ -50,35 +49,42 @@ const postDate = post.data.pubDate || post.data.date;
 			margin: 0 auto;
 			padding: 2rem 1rem;
 		}
-
-		.hero-image {
-			width: 100%;
-			margin-bottom: 2rem;
-		}
-
-		.hero-image img {
-			display: block;
-			margin: 0 auto;
-			border-radius: 12px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			width: 100%;
-			height: auto;
-		}
-
 		.title {
 			margin-bottom: 2rem;
+			padding: 2rem 1rem;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			height: 33rem;
+			width: 100vw;
+			margin-left: calc(50% - 50vw);
+			margin-top: -6.5rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			gap: 1rem;
 		}
-
 		.title h1 {
 			margin: 0 0 0.5rem 0;
 			color: var(--nord1);
-			font-size: 2.5rem;
+			font-size: 3.5rem;
 			line-height: 1.2;
 		}
 
 		.date {
 			color: var(--nord3);
 			margin-bottom: 0.5rem;
+			font-size: 1rem;
+			font-family: "Goldman";
+		}
+
+		.type {
+			padding: 0.25rem 2rem;
+			border-radius: 10000px;
+			background: rgba(255, 255, 255, 0.43);
+			font-family: "Goldman";
 		}
 
 		.last-updated-on {
@@ -87,10 +93,16 @@ const postDate = post.data.pubDate || post.data.date;
 			margin-top: 0.25rem;
 		}
 
-		.author {
+		.prose .author {
 			color: var(--nord3);
 			font-size: 1rem;
-			margin: 0.5rem 0;
+			margin: 1rem 0 2rem 0;
+			font-family: Goldman;
+		}
+
+		.prose .description {
+			margin-bottom: 3rem;
+			font-family: Goldman;
 		}
 
 		.title hr {
@@ -102,6 +114,7 @@ const postDate = post.data.pubDate || post.data.date;
 		.prose {
 			font-size: 1.1rem;
 			line-height: 1.8;
+			font-family: "GenYoGothic2 TW";
 		}
 
 		.prose :global(h1),
@@ -116,15 +129,23 @@ const postDate = post.data.pubDate || post.data.date;
 		}
 
 		.prose :global(h1) {
-			font-size: 2rem;
+			font-size: 2.5rem;
 		}
 
 		.prose :global(h2) {
-			font-size: 1.75rem;
+			font-size: 2rem;
 		}
 
 		.prose :global(h3) {
+			font-size: 1.6rem;
+		}
+
+		.prose :global(h4) {
 			font-size: 1.5rem;
+		}
+
+		.prose :global(h4) {
+			font-size: 1.125rem;
 		}
 
 		.prose :global(p) {
@@ -142,34 +163,44 @@ const postDate = post.data.pubDate || post.data.date;
 		}
 
 		.prose :global(code) {
-			background-color: var(--nord6);
+			background: var(--nord4, #D8DEE9);
 			padding: 0.2rem 0.4rem;
 			border-radius: 4px;
 			font-size: 0.9em;
-			font-family: "Courier New", monospace;
+			font-family: "Fira Code", monospace;
 		}
 
 		.prose :global(pre) {
-			background-color: var(--nord0);
-			color: var(--nord6);
-			padding: 1rem;
-			border-radius: 8px;
+			background-color: var(--nord1) !important;
+			color: #FFF;
+			padding: 1rem 2rem;
+			border-radius: 1rem;
 			overflow-x: auto;
 			margin: 1.5rem 0;
 		}
 
 		.prose :global(pre code) {
+			font-family: "Fira Code", monospace;
 			background-color: transparent;
 			padding: 0;
 			color: inherit;
 		}
 
 		.prose :global(blockquote) {
-			border-left: 4px solid var(--primary);
-			padding-left: 1rem;
-			margin: 1.5rem 0;
-			font-style: italic;
-			color: var(--nord3);
+			padding-left: 4rem;
+			margin: 3rem 0;
+			position: relative;
+		}
+
+		.prose :global(blockquote::before) {
+			content: '“';
+			position: absolute;
+			left: 1rem;
+			top: -0.5rem;
+			font-size: 3rem;
+			font-family: "Goldman";
+			color: var(--nord1, #3B4252);
+			line-height: 1;
 		}
 
 		.prose :global(ul),
@@ -187,6 +218,33 @@ const postDate = post.data.pubDate || post.data.date;
 			height: auto;
 			border-radius: 8px;
 			margin: 1.5rem 0;
+		}
+
+		.prose :global(table) {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0;
+			margin: 2rem 0;
+			font-size: 1rem;
+			border-radius: 0.25rem;
+			border: 0.5px solid var(--nord4, #D8DEE9);
+		}
+
+		.prose :global(thead) {
+			background: var(--nord5, #E5E9F0);
+		}
+
+		.prose :global(th) {
+			padding: 0.5rem 1rem;
+			text-align: left;
+			font-weight: 600;
+			color: var(--nord1);
+			border: 1px solid var(--nord4, #D8DEE9);
+		}
+
+		.prose :global(td) {
+			padding: 0.5rem 1rem;
+			border: 1px solid var(--nord4, #D8DEE9);
 		}
 
 		@media (max-width: 768px) {
