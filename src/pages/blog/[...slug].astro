@@ -209,9 +209,13 @@ const postDate = post.data.pubDate || post.data.date;
 			margin: 1rem 0;
 			padding-left: 2rem;
 		}
-
+		
 		.prose :global(li) {
 			margin: 0.5rem 0;
+		}
+
+		.prose :global(ul li::marker) {
+			font-size: 0.5em;
 		}
 
 		.prose :global(img) {
