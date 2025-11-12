@@ -1,9 +1,11 @@
 ---
 import Infinite from "@/assets/home/infinity.svg";
+import InfiniteDark from "@/assets/home/infinity-dark.svg";
 ---
 
 <header>
 	<img src={Infinite.src} class="infinity-shape" alt="∞" />
+	<img src={InfiniteDark.src} class="infinity-shape dark" alt="∞" />
 	<div class="name-eng">
 		Software<br />
 		Development Club
@@ -18,6 +20,18 @@ import Infinite from "@/assets/home/infinity.svg";
 		transform: translate(-50%, -50%);
 		height: 180vh;
 		z-index: -1;
+	}
+
+	:global(.dark) .infinity-shape {
+		display: none;
+	}
+
+	:global(.dark) .infinity-shape.dark {
+		display: block;
+	}
+
+	.infinity-shape.dark {
+		display: none;
 	}
 
 	@media (max-width: 768px) {
