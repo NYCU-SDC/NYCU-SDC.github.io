@@ -7,7 +7,6 @@ const currentPath = Astro.url.pathname;
 		<span class="logo-text">NYCU SDC</span>
 	</a>
 	<ul class="nav-links">
-		
 		<li>
 			<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
 		</li>
@@ -22,21 +21,23 @@ const currentPath = Astro.url.pathname;
 
 <style>
 	nav {
+		position: fixed;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		position: sticky;
 		margin: 0 auto;
 		padding: 1rem 2rem;
+		left: 50%;
+		transform: translateX(-50%);
 		top: 1.5rem;
 		z-index: 1000;
 		border: 1px solid var(--nord5);
-    border-radius: 999px;
+		border-radius: 999px;
 		backdrop-filter: blur(10px);
 		background-color: rgba(255, 255, 255, 0.533);
-		width: 866px;
-		height: 62px;
-		max-width: var(--max-width);
+		height: 3.875rem;
+		max-width: 866px;
+		width: calc(100% - 3rem);
 	}
 
 	.logo {
@@ -50,13 +51,13 @@ const currentPath = Astro.url.pathname;
 		font-size: 1.5rem;
 		font-weight: 700;
 		color: var(--nord1);
-		
+
 		transition: color 0.2s ease;
 	}
 
 	.logo:hover .logo-text {
 		//color: var(--primary);
-		color: var(--nord10, rgba(94, 129, 172, 1))
+		color: var(--nord10, rgba(94, 129, 172, 1));
 	}
 
 	.nav-links {
@@ -84,7 +85,7 @@ const currentPath = Astro.url.pathname;
 		width: 0;
 		height: 2px;
 		//background-color: var(--primary);
-		
+
 		//background: var(--nord10, rgba(94, 129, 172, 1));
 
 		transition: width 0.3s ease;
@@ -93,7 +94,6 @@ const currentPath = Astro.url.pathname;
 	.nav-links a:hover {
 		color: var(--nord10, rgba(94, 129, 172, 1));
 		//color: var(--primary);
-
 	}
 
 	.nav-links a:hover::after,

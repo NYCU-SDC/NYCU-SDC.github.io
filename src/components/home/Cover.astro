@@ -1,0 +1,43 @@
+---
+import Infinite from "@/assets/infinity.svg";
+---
+
+<header>
+	<img src={Infinite.src} class="infinity-shape" alt="∞" />
+	<div class="name-eng">
+		Software<br />
+		Development Club
+	</div>
+	<h1>NYCU軟體開發社</h1>
+</header>
+<style>
+	.infinity-shape {
+		position: absolute;
+		left: 20%;
+		top: 50%;
+		transform: translate(0, -50%);
+		height: 180vh;
+		z-index: -1;
+	}
+
+	header {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 2rem;
+		color: var(--nord2);
+	}
+
+	.name-eng {
+		font-size: 3.5rem;
+        line-height: 1;
+        margin-bottom: 1rem;
+	}
+
+	h1 {
+		font-size: 1.75rem;
+		font-weight: 400;
+	}
+</style>

@@ -1,16 +1,16 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import HomeCover from "@/components/HomeCover.astro";
-import HomeInfo from "@/components/HomeInfo.astro";
+import Cover from "@/components/home/Cover.astro";
+import Intro from "@/components/home/Intro.astro";
+import Members from "@/components/home/Members.astro";
+import Learn from "@/components/home/Learn.astro";
 ---
 
 <Layout>
-	<HomeCover />
-	<HomeInfo />
-
-	<section>
-		<h1>歡迎來到交大軟體開發社！</h1>
-	</section>
+	<Cover />
+	<Intro />
+	<Members />
+	<Learn />
 	<style>
 		section {
 			max-width: var(--content-width);

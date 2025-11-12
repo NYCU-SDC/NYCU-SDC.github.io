@@ -1,0 +1,50 @@
+<section>
+	<div class="member-left">
+		<div class="card">
+			<p class="member-num">80</p>
+			<p class="member-role">Core Members</p>
+		</div>
+		<div class="card">
+			<p class="member-num">30%</p>
+			<p class="member-role">Master Students</p>
+		</div>
+	</div>
+	<div class="member-right card">
+		<p class="member-num">80</p>
+		<p class="member-role">Total Members</p>
+	</div>
+</section>
+<style>
+	section {
+		max-width: var(--content-width);
+		margin: auto;
+		display: flex;
+		align-items: stretch;
+		gap: 34px;
+	}
+
+	.member-left {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		flex: 13;
+	}
+	.member-right {
+		flex: 10;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+	}
+
+	.card {
+		border-radius: 16px;
+		border: 4px solid rgba(216, 222, 233, 1);
+		min-height: 5rem;
+		padding: 2rem 1.5rem 1.2rem;
+	}
+
+	.member-num {
+		font-size: 3rem;
+		line-height: 1;
+	}
+</style>
