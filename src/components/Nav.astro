@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from "@/components/ThemeToggle.astro";
 const currentPath = Astro.url.pathname;
 ---
 
@@ -6,17 +7,20 @@ const currentPath = Astro.url.pathname;
 	<a href="/" class="logo">
 		<span class="logo-text">NYCU SDC</span>
 	</a>
-	<ul class="nav-links">
-		<li>
-			<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
-		</li>
-		<li>
-			<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
-		</li>
-		<li>
-			<a href="/" class:list={[{ active: currentPath === "/" }]}>Resources</a>
-		</li>
-	</ul>
+	<div class="nav-right">
+		<ul class="nav-links">
+			<li>
+				<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
+			</li>
+			<li>
+				<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
+			</li>
+			<li>
+				<a href="/" class:list={[{ active: currentPath === "/" }]}>Resources</a>
+			</li>
+		</ul>
+		<ThemeToggle />
+	</div>
 </nav>
 
 <style>
@@ -34,10 +38,17 @@ const currentPath = Astro.url.pathname;
 		border: 1px solid var(--nord5);
 		border-radius: 999px;
 		backdrop-filter: blur(10px);
-		background-color: rgba(255, 255, 255, 0.533);
+		background-color: var(--nav-bg);
 		height: 3.875rem;
 		max-width: 866px;
 		width: calc(100% - 3rem);
+		transition: background-color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.nav-right {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	.logo {
