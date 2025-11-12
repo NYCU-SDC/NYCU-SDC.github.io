@@ -11,7 +11,7 @@
 		</div>
 		<div class="thing">
 			<h3>超算競賽</h3>
-			<p>每學期會開設不同的社團課程</p>
+			<p>好貴好快的電腦跑跑跑</p>
 		</div>
 		<div class="thing">
 			<h3>出去玩</h3>
@@ -28,7 +28,7 @@
 		text-align: center;
 	}
 	h2 {
-		font-size: 3rem;
+		font-size: clamp(2rem, 9vw, 3rem);
 		line-height: 130%;
 		color: var(--nord1, rgba(59, 66, 82, 1));
 		padding-bottom: 80px;
@@ -55,5 +55,11 @@
 		font-size: 2rem;
 		margin-bottom: 0.5rem;
 		font-weight: 600;
+	}
+
+		@media (max-width: 50rem) {
+		section {
+		margin-bottom: 0rem;
+		}
 	}
 </style>

@@ -1,0 +1,158 @@
+---
+import itsaLogo from '@/assets/home/ITSA.png';
+import eeLogo from '@/assets/home/EE.png';
+import nchcLogo from '@/assets/home/NCHC.svg';
+import profHuang from '@/assets/home/shih-kun.webp';
+import profShe from '@/assets/home/hsiao-ching.webp';
+import profTsai from '@/assets/home/meng-hsun.webp';
+---
+<section class="partners">
+  <h2>合作對象</h2>
+  
+  <div class="partners-grid">
+    <!-- Organizations -->
+    <div class="partner-card org">
+      <div class="partner-logo">
+        <img src={itsaLogo.src} alt="ITSA Logo" />
+      </div>
+      <h3 class="partner-name">ITSA 教育部智慧創新關鍵人才躍升計畫</h3>
+      <p class="partner-description">計劃全面贊助本社大部分執行與採購費用</p>
+    </div>
+
+    <div class="partner-card org">
+      <div class="partner-logo">
+        <img src={eeLogo.src} alt="AMD Logo" />
+      </div>
+      <h3 class="partner-name">電機系/AMD ED312 Remote LAB 合作案</h3>
+      <p class="partner-description">全權管理、建立與維運 AMD 贊助之計算設備</p>
+    </div>
+
+    <div class="partner-card org">
+      <div class="partner-logo">
+        <img src={nchcLogo.src} alt="NCHC Logo" />
+      </div>
+      <h3 class="partner-name">國家高速網路與計算中心</h3>
+      <p class="partner-description">計劃 HPC Team 訓練與運算之經費</p>
+    </div>
+
+    <!-- Professors -->
+    <div class="partner-card professor">
+      <div class="partner-logo circle">
+        <img src={profHuang.src} alt="黃世昆教授" />
+      </div>
+      <h3 class="partner-name">資工系 黃世昆教授</h3>
+      <p class="partner-description">實驗室全面合作，透過導入業界軟體工程方法維持社團所有開發計劃之運作</p>
+    </div>
+
+    <div class="partner-card professor">
+      <div class="partner-logo circle">
+        <img src={profShe.src} alt="佘曉清教授" />
+      </div>
+      <h3 class="partner-name">教育所 佘曉清教授</h3>
+      <p class="partner-description">實驗室 NSC Project LLM Part 研究合作</p>
+    </div>
+     <div class="partner-card professor">
+      <div class="partner-logo circle">
+        <img src={profTsai.src} alt="蔡孟勳教授" />
+      </div>
+      <h3 class="partner-name">資工系 蔡孟勳教授</h3>
+      <p class="partner-description">指導教授<br>CCCA 1998 成員</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color, #333);
+  }
+
+  .partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .partner-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+    padding: 2rem;
+    background: var(--card-bg, #fff);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .partner-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .partner-logo.circle {
+    border-radius: 50%;
+  }
+
+  .partner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .partner-logo.circle img {
+    object-fit: cover;
+  }
+
+  .partner-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color, #333);
+    line-height: 1.4;
+  }
+
+  .partner-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary, #666);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .partners {
+      padding: 3rem 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .partner-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+</style>

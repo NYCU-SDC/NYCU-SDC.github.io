@@ -1,5 +1,5 @@
 ---
-import Infinite from "@/assets/infinity.svg";
+import Infinite from "@/assets/home/infinity.svg";
 ---
 
 <header>
@@ -13,16 +13,24 @@ import Infinite from "@/assets/infinity.svg";
 <style>
 	.infinity-shape {
 		position: absolute;
-		left: 20%;
+		left: 80%;
 		top: 50%;
-		transform: translate(0, -50%);
+		transform: translate(-50%, -50%);
 		height: 180vh;
 		z-index: -1;
+	}
+
+	@media (max-width: 768px) {
+		.infinity-shape {
+			left: 90%;
+			height: 120vh;
+		}
 	}
 
 	header {
 		position: relative;
 		min-height: 100vh;
+		min-height: calc(100svh - 1rem);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
@@ -31,13 +39,13 @@ import Infinite from "@/assets/infinity.svg";
 	}
 
 	.name-eng {
-		font-size: 3.5rem;
-        line-height: 1;
-        margin-bottom: 1rem;
+		font-size: clamp(2rem, 8vw, 3.5rem);
+		line-height: 1;
+		margin-bottom: 1rem;
 	}
 
 	h1 {
-		font-size: 1.75rem;
+		font-size: clamp(1.2rem, 6vw, 1.75rem);
 		font-weight: 400;
 	}
 </style>
