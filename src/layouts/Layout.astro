@@ -8,12 +8,14 @@ interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
+	hideNav?: boolean;
 }
 
 const {
 	title = "交大軟體開發社 NYCU Student Development Club",
 	description = "我們是陽明交大軟體開發社（NYCU SDC），旨在聚集交清人才，加速推動兩校在資訊領域的發展，同時引領更多的新人成為人才，無限循環。",
-	ogImage = "/og-image.webp"
+	ogImage = "/og-image.webp",
+	hideNav = false
 } = Astro.props;
 
 const siteUrl = "https://sdc.nycu.club/";
@@ -70,11 +72,11 @@ const fullOgImage = new URL(ogImage, siteUrl).toString();
 		<link href="https://font.emtech.cc/css/GenSekiGothicTW" rel="stylesheet" />
 	</head>
 	<body>
-		<Nav />
+		{!hideNav && <Nav />}
 		<main id="main-content" transition:animate={fade({ duration: "0.3s" })}>
 			<slot />
 		</main>
-		<Footer transition:animate={fade({ duration: "0.3s" })} />
+		{!hideNav && <Footer transition:animate={fade({ duration: "0.3s" })} />}
 		<style is:global>
 			:root {
 				--primary: #ffab52;

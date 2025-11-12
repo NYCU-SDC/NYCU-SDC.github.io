@@ -1,0 +1,56 @@
+---
+type ButtonValue = {
+	name: string;
+	display: string;
+};
+
+interface Props {
+	contentList?: Array<ButtonValue>;
+}
+
+const { contentList = [] } = Astro.props;
+---
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>(".select-button");
+
+	buttons.forEach(btn => {
+		btn.addEventListener("click", () => {
+			buttons.forEach(b => b.classList.remove("selected"));
+			btn.classList.add("selected");
+			const idx = Number(btn.dataset.idx);
+		});
+	});
+</script>
+
+<div class="select-container">
+	{
+		contentList.map((element, idx) => (
+			<button class={`select-button ${idx === 0 && `selected`}`} data-idx={idx}>
+				{element.display}
+			</button>
+		))
+	}
+</div>
+
+<style>
+	.select-container {
+		display: flex;
+		gap: 1rem;
+	}
+	.select-button {
+		all: unset;
+		padding: 0.5rem 1rem;
+		background-color: var(--nord3);
+		color: var(--nord6);
+		border-radius: 0.5rem;
+		font-size: 1.25rem;
+		line-height: 1;
+		flex: 1;
+		text-align: center;
+		cursor: pointer;
+	}
+	.select-button.selected {
+		background: var(--nord10);
+	}
+</style>

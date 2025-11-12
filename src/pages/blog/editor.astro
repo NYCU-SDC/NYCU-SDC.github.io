@@ -1,23 +1,200 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Selector from "@/components/editor/Selector.astro";
 ---
 
-<Layout>
+<Layout hideNav={true}>
 	<section>
-		<h1>部落格編輯器</h1>
+		<div class="editor-sidebar">
+			<div class="editor-blog-list editor-block">
+				<p class="editor-list-title">SDC Blog Editor</p>
+				<div class="editor-list-button-contener">
+					<Selector
+						contentList={[
+							{
+								name: "DRAFT",
+								display: "草稿"
+							},
+							{
+								name: "PUBLISHED",
+								display: "已發佈"
+							}
+						]}
+					/>
+				</div>
+				<div class="new-post post-button">新增文章</div>
+				{}
+			</div>
+			<div class="editor-image editor-block">
+				<img class="post-image" id="preview" />
+				<input class="post-image-upload" type="file" id="image" accept="image/*" hidden={true} />
+				<button class="editor-button secondary" id="upload">上傳縮圖</button>
+			</div>
+		</div>
+		<div class="editor-content">
+			<div class="editor-title editor-block">
+				<p>正在編輯:</p>
+				<input class="editor-title-input" />
+				<button class=`editor-button`>刪除</button>
+				<button class=`editor-button`>儲存</button>
+				<button class=`editor-button`>發布</button>
+			</div>
+			<div id="editor" class="editor-post editor-block"></div>
+			<script src="/src/scripts/InitMilkdown" type="module"></script>
+		</div>
 	</section>
+	<script>
+		const uploadBotton = document.querySelector<HTMLButtonElement>("#upload")!!;
+		const previewImage = document.querySelector<HTMLImageElement>("#preview")!!;
+		const fileInput = document.querySelector<HTMLInputElement>("#image")!!;
+
+		let selectedImage;
+
+		uploadBotton.addEventListener("click", () => {
+			fileInput.click();
+		});
+
+		fileInput.addEventListener("change", e => {
+			const target = e.target as HTMLInputElement;
+			const file = target.files?.[0];
+			if (!file) return;
+			selectedImage = file;
+
+			if (selectedImage) {
+				const url = URL.createObjectURL(selectedImage);
+				previewImage.src = url;
+			}
+		});
+	</script>
 	<style>
 		body {
-			background-color: var(--nord1);
+			background-color: var(--nord0);
 			color: var(--nord6);
 		}
 		section {
+			display: flex;
 			padding: 2rem 1rem;
-			text-align: center;
+			justify-content: center;
+			gap: 2rem;
+			flex: 1;
+			min-height: 100dvh;
 		}
-
 		h1 {
 			text-align: center;
+		}
+		.editor-block {
+			background-color: var(--nord1);
+			border-radius: 1rem;
+		}
+		.editor-sidebar {
+			display: flex;
+			flex-direction: column;
+			max-width: 21.75rem;
+			flex: 1;
+		}
+		.editor-content {
+			display: flex;
+			flex-direction: column;
+			max-width: 50.5rem;
+			flex: 1;
+		}
+		.editor-blog-list {
+			display: flex;
+			flex-direction: column;
+			padding: 2.25rem 1.25rem;
+			flex: 1;
+			gap: 1.5rem;
+		}
+		.editor-list-title {
+			font-size: 1.5rem;
+		}
+		.post-button {
+			background: var(--nord3);
+			padding: 0.75rem;
+			font-size: 1.25rem;
+			border-radius: 0.5rem;
+			line-height: 1;
+		}
+		.editor-image {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 1.75rem;
+			padding: 1.75rem 3rem;
+			gap: 1.25rem;
+		}
+		.post-image {
+			background: var(--nord6);
+			height: 8.86rem;
+			max-width: 100%;
+			width: fit-content;
+			display: block;
+			border-radius: 0.5rem;
+		}
+		.editor-title {
+			display: flex;
+			padding: 0 1.5rem;
+			min-height: 4.25rem;
+			gap: 1rem;
+			align-items: center;
+			font-size: 1.5rem;
+		}
+		.editor-title-input {
+			all: unset;
+			width: 0;
+			flex: 1;
+		}
+		.editor-post {
+			margin-top: 1.5rem;
+			padding: 3rem 6rem;
+			flex: 1;
+		}
+		.editor-button {
+			all: unset;
+			padding: 0.5rem 1rem;
+			background-color: var(--nord3);
+			color: var(--nord6);
+			border-radius: 0.5rem;
+			font-size: 1.25rem;
+			line-height: 1;
+			cursor: pointer;
+			text-align: center;
+			margin: 0 auto;
+		}
+		.editor-button:hover {
+			background: var(--nord2);
+		}
+		.editor-button.secondary {
+			background: var(--nord10);
+		}
+		:global(.milkdown) {
+			--crepe-color-background: var(--nord1);
+			--crepe-color-on-background: var(--nord6);
+			--crepe-color-surface: var(--nord0);
+			--crepe-color-surface-low: var(--nord0);
+			--crepe-color-on-surface: var(--nord4);
+			--crepe-color-on-surface-variant: var(--nord4);
+			--crepe-color-outline: var(--nord5);
+			--crepe-color-primary: var(--nord3);
+			--crepe-color-secondary: var(--nord2);
+			--crepe-color-on-secondary: var(--nord10);
+			--crepe-color-inverse: var(--nord10);
+			--crepe-color-on-inverse: var(--nord7);
+			--crepe-color-inline-code: var(--nord11);
+			--crepe-color-error: var(--nord11);
+			--crepe-color-hover: var(--nord1);
+			--crepe-color-selected: var(--nord3);
+			--crepe-color-inline-area: var(--nord1);
+
+			--crepe-font-title: inherit;
+			--crepe-font-default: inherit;
+			--crepe-font-code: "FiraCode", Menlo, Monaco, "Courier New", Courier, monospace;
+
+			--crepe-shadow-1: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 1px 3px 1px rgba(255, 255, 255, 0.15);
+			--crepe-shadow-2: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 2px 6px 2px rgba(255, 255, 255, 0.15);
+		}
+		:global(.ProseMirror) {
+			padding: 0 !important;
 		}
 	</style>
 </Layout>
