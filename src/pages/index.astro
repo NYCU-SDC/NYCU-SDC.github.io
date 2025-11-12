@@ -23,4 +23,47 @@ import Partners from "@/components/home/Partners.astro";
 			text-align: center;
 		}
 	</style>
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "EducationalOrganization",
+			"name": "交大軟體開發社 NYCU Student Development Club",
+			"alternateName": "NYCU SDC",
+			"url": "https://sdc.example.org",
+			"logo": "https://cdn.example.org/logo.png",
+			"image": "https://cdn.example.org/cover.jpg",
+			"description": "我們是陽明交大軟體開發社（NYCU SDC），旨在聚集交清人才，加速推動兩校在資訊領域的發展，同時引領更多的新人成為人才，無限循環。",
+			"foundingDate": "1992-04-01",
+			"parentOrganization": {
+				"@type": "CollegeOrUniversity",
+				"name": "國立陽明交通大學",
+				"alternateName": "NYCU",
+				"url": "https://www.nycu.edu.tw"
+			},
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "國立陽明交通大學 光復校區",
+				"addressLocality": "新竹市",
+				"addressCountry": "TW"
+			},
+			"contactPoint": [
+				{
+					"@type": "ContactPoint",
+					"email": "contact@sdc.nycu.club",
+					"contactType": "customer support",
+					"availableLanguage": ["zh-Hant", "en"]
+				}
+			],
+			"sameAs": ["https://www.facebook.com/NYCUSDC", "https://www.youtube.com/@NYCUSDC", "https://github.com/NYCU-SDC", "https://www.linkedin.com/company/software-development-club-nycu"],
+			"knowsAbout": ["軟體開發", "Frontend", "Backend", "HPC", "人工智慧", "開源專案", "工程教育"],
+			"memberOf": {
+				"@type": "Organization",
+				"name": "國立陽明交通大學學生社團"
+			},
+			"areaServed": {
+				"@type": "Place",
+				"name": "Taiwan"
+			}
+		}
+	</script>
 </Layout>
