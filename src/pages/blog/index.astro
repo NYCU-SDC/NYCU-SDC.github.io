@@ -12,16 +12,16 @@ const posts = (await getCollection("blog"))
 		return dateB.valueOf() - dateA.valueOf();
 	});
 
-const filterPosts = posts;
+const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolean)));
 ---
 
 <Layout>
 	<h1 class="page-title">Blog</h1>
 	<div class="filter-buttons">
 		<button class="filter-btn active" data-filter="all">全部</button>
-		<button class="filter-btn" data-filter="專案成果">專案成果</button>
-		<button class="filter-btn" data-filter="財務報表">財務報表</button>
-		<button class="filter-btn" data-filter="活動公告">活動公告</button>
+		{types.map(type => (
+			<button class="filter-btn" data-filter={type}>{type}</button>
+		))}
 	</div>
 	<section>
 		<ul class="posts-list">
