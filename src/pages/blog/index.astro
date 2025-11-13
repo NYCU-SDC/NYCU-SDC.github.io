@@ -19,9 +19,13 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 	<h1 class="page-title">Blog</h1>
 	<div class="filter-buttons">
 		<button class="filter-btn active" data-filter="all">全部</button>
-		{types.map(type => (
-			<button class="filter-btn" data-filter={type}>{type}</button>
-		))}
+		{
+			types.map(type => (
+				<button class="filter-btn" data-filter={type}>
+					{type}
+				</button>
+			))
+		}
 	</div>
 	<section>
 		<ul class="posts-list">
@@ -29,10 +33,7 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 				posts.map((post, index) => {
 					const postDate = (post.data.pubDate || post.data.date)!;
 					return (
-						<li 
-							data-type={post.data.type || "uncategorized"}
-							class={index === 0 ? "first-post" : ""}
-						>
+						<li data-type={post.data.type || "uncategorized"} class={index === 0 ? "first-post" : ""}>
 							<a href={`/blog/${post.id}/`}>
 								{post.data.heroImage && <Image width={720} height={360} src={post.data.heroImage} alt="" />}
 								<div class="text">
@@ -51,7 +52,7 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 	</section>
 	<style>
 		.page-title {
-			color: var(--nord1, #3B4252);
+			color: var(--nord1, #3b4252);
 			font-weight: 400;
 			text-align: center;
 			font-size: 4rem;
@@ -80,7 +81,7 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 			text-decoration: none;
 			transition: 0.2s ease;
 		}
-		
+
 		ul li img {
 			width: 100%;
 			height: 12rem;
@@ -100,24 +101,24 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 		}
 		.type {
 			margin: 0;
-			color: var(--nord9, #81A1C1);
+			color: var(--nord9);
 		}
 		.title {
 			margin: 0;
-			color: rgb(var(--black));
+			color: var(--nord1);
 			line-height: 1;
 			font-size: 1.5rem;
 		}
 		.date {
 			margin: 0;
-			color: rgb(var(--gray));
+			color: var(--nord6);
 		}
 		ul li a:hover h4,
 		ul li a:hover .date {
-			color: rgb(var(--accent));
+			color: var(--accent);
 		}
 		ul a:hover img {
-			box-shadow: var(--box-shadow);
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		}
 		.filter-buttons {
 			display: flex;
@@ -127,8 +128,8 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 		}
 		.filter-btn {
 			padding: 0.25rem 1rem;
-			background: var(--nord4, #D8DEE9);
-			color: var(--nord1, #3B4252);
+			background: var(--nord4, #d8dee9);
+			color: var(--nord1, #3b4252);
 			border-color: transparent;
 			border-radius: 1rem;
 			cursor: pointer;
@@ -137,11 +138,11 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 		}
 
 		.filter-btn:hover {
-			color: var(--nord9, #81A1C1);
+			color: var(--nord9);
 		}
 		.filter-btn.active {
-			background: var(--nord3, #4C566A);
-			color: var(--nord4, #D8DEE9);
+			background: var(--nord3);
+			color: var(--nord4);
 		}
 		ul li.hidden {
 			display: none;
@@ -182,7 +183,7 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 	<script>
 		const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
 		const posts = document.querySelectorAll<HTMLLIElement>(".posts-list li");
-		
+
 		filterButtons.forEach(button => {
 			button.addEventListener("click", () => {
 				const filter = button.dataset.filter;
@@ -190,10 +191,10 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 				filterButtons.forEach(btn => btn.classList.remove("active"));
 				button.classList.add("active");
 				posts.forEach(post => post.classList.remove("first-post"));
-				
+
 				posts.forEach(post => {
 					const postType = post.dataset.type;
-					
+
 					if (filter === "all" || postType === filter) {
 						post.classList.remove("hidden");
 					} else {
@@ -202,7 +203,7 @@ const types = Array.from(new Set(posts.map(post => post.data.type).filter(Boolea
 				});
 
 				const firstVisible = Array.from(posts).find(post => !post.classList.contains("hidden"));
-				
+
 				if (firstVisible && filter === "all") {
 					firstVisible.classList.add("first-post");
 				}
