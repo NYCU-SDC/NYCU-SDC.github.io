@@ -7,20 +7,18 @@ const currentPath = Astro.url.pathname;
 	<a href="/" class="logo">
 		<span class="logo-text">NYCU SDC</span>
 	</a>
-	<div class="nav-right">
-		<ul class="nav-links">
-			<li>
-				<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
-			</li>
-			<li>
-				<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
-			</li>
-			<li>
-				<a href="/" class:list={[{ active: currentPath === "/" }]}>Resources</a>
-			</li>
-		</ul>
+	<ul class="nav-links">
+		<li>
+			<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
+		</li>
+		<li>
+			<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
+		</li>
+		<li>
+			<a href="https://sdc-nycu.notion.site/welcome" target="_blank" rel="noopener">Notion</a>
+		</li>
 		<ThemeToggle />
-	</div>
+	</ul>
 </nav>
 
 <style>
@@ -42,13 +40,9 @@ const currentPath = Astro.url.pathname;
 		height: 3.875rem;
 		max-width: 866px;
 		width: calc(100% - 3rem);
-		transition: background-color 0.3s ease, border-color 0.3s ease;
-	}
-
-	.nav-right {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
+		transition:
+			background-color 0.3s ease,
+			border-color 0.3s ease;
 	}
 
 	.logo {
@@ -73,6 +67,7 @@ const currentPath = Astro.url.pathname;
 
 	.nav-links {
 		display: flex;
+		align-items: center;
 		list-style: none;
 		gap: 2rem;
 		margin: 0;

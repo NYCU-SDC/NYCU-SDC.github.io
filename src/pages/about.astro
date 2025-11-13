@@ -2,18 +2,143 @@
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout>
+<Layout title="關於我們 - NYCU SDC" description="交大軟體開發社組織架構與開發部介紹">
 	<section>
 		<h1>關於我們</h1>
+		
+		<div class="content">
+			<p class="intro">
+				我們是陽明交大軟體開發社（NYCU SDC），旨在聚集交清人才，加速推動兩校在資訊領域的發展，同時引領更多的新人成為人才，♾️ 循環。
+			</p>
+
+			<h2>組織架構</h2>
+			<ul class="departments">
+				<li>行政部</li>
+				<li>品牌部</li>
+				<li>財政部</li>
+				<li>記錄部</li>
+				<li>教務部</li>
+				<li>開發部</li>
+			</ul>
+
+			<h2>開發部簡介</h2>
+			<p>
+				SDC 開發部（Engineering Department）目標提供 Project Team 在產品開發中的各種支援，整合計算資源、CI/CD 和配套 Training。我們也協助 Project Team 導入現代化的工程方法，透過 Agile、Code Review 以及以 Cloud Native 為核心的系統設計理念，確保產品的可靠與可持續性。
+			</p>
+			<p>
+				我們強調從一開始就以真實世界的標準打造產品，讓團隊不僅能快速迭代，更能在面對規模成長與需求變化時保持穩定與彈性。
+			</p>
+			<p>
+				最後，我們堅信「邊做邊學」是最快的成長方式，開發部的訓練計畫會與實際的開發需求緊密結合，並且針對 0 基礎而設計。不用擔心缺乏經驗，只要願意投入時間，我們會幫助你從最基本的觀念開始累積，直到能夠獨立解決問題，並在真實專案中發揮關鍵影響力！
+			</p>
+
+			<h2>近期專案</h2>
+			<ul class="projects">
+				<li>HPC Team</li>
+				<li>Clustron</li>
+				<li>Core System</li>
+			</ul>
+		</div>
 	</section>
 	<style>
 		section {
 			max-width: var(--content-width);
 			margin: 0 auto;
-			padding: 2rem 1rem;
+			padding: 10rem 1rem 0;
 		}
+		
 		h1 {
 			text-align: center;
+			margin-bottom: 3rem;
+			font-size: 2.5rem;
+			color: var(--text-primary);
+		}
+
+		.content {
+			line-height: 1.8;
+		}
+
+		.intro {
+			font-size: 1.2rem;
+			text-align: center;
+			margin-bottom: 3rem;
+			color: var(--text-secondary);
+		}
+
+		h2 {
+			margin-top: 2.5rem;
+			margin-bottom: 1rem;
+			font-size: 1.8rem;
+			color: var(--text-primary);
+			border-bottom: 2px solid var(--nord10);
+			padding-bottom: 0.5rem;
+		}
+
+		p {
+			margin-bottom: 1rem;
+			color: var(--text-secondary);
+		}
+
+		.departments {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+			gap: 1rem;
+			list-style: none;
+			margin: 1.5rem 0;
+		}
+
+		.departments li {
+			background: var(--bg-secondary);
+			padding: 1rem;
+			border-radius: 0.5rem;
+			text-align: center;
+			font-weight: 600;
+			color: var(--text-primary);
+			border: 1px solid var(--border-color);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.departments li:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(94, 129, 172, 0.2);
+		}
+
+		.projects {
+			list-style: none;
+			margin: 1.5rem 0;
+		}
+
+		.projects li {
+			padding: 0.75rem 1rem;
+			margin-bottom: 0.5rem;
+			background: var(--bg-secondary);
+			border-left: 4px solid var(--nord10);
+			border-radius: 0.25rem;
+			color: var(--text-primary);
+			transition: background-color 0.2s ease;
+		}
+
+		.projects li:hover {
+			background: var(--nord10);
+			color: var(--white);
+		}
+
+		@media (max-width: 768px) {
+			h1 {
+				font-size: 2rem;
+			}
+
+			h2 {
+				font-size: 1.5rem;
+			}
+
+			.intro {
+				font-size: 1.1rem;
+			}
+
+			.departments {
+				grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+			}
 		}
 	</style>
 </Layout>
