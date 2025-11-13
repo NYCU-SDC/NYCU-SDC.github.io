@@ -7,7 +7,7 @@ type: "專案成果"
 heroImage: thumbnail.webp
 ---
 
-歡迎來到交大軟體開發社（NYCU Student Development Club）！
+歡迎來到交大軟體開發社（NYCU Software Development Club）！
 
 ## 關於我們
 

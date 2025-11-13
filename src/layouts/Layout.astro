@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-	title = "交大軟體開發社 NYCU Student Development Club",
+	title = "交大軟體開發社 NYCU Software Development Club",
 	description = "我們是陽明交大軟體開發社（NYCU SDC），旨在聚集交清人才，加速推動兩校在資訊領域的發展，同時引領更多的新人成為人才，無限循環。",
 	ogImage = "/og-image.webp"
 } = Astro.props;
@@ -62,9 +62,9 @@ const fullOgImage = new URL(ogImage, siteUrl).toString();
 		<meta property="og:url" content={siteUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={fullOgImage} />
+		<!-- <meta property="og:image" content={fullOgImage} />
 		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
+		<meta property="og:image:height" content="630" /> -->
 		<meta property="og:locale" content="zh_TW" />
 		<meta property="og:site_name" content="NYCU SDC" />
 
