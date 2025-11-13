@@ -7,8 +7,6 @@ type: "專案成果"
 heroImage: thumbnail.webp
 ---
 
-# 範例文章：認識 NYCU SDC
-
 歡迎來到交大軟體開發社（NYCU Student Development Club）！
 
 ## 關於我們
