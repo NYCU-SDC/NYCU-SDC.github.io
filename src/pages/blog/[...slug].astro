@@ -26,16 +26,18 @@ const postDate = post.data.pubDate || post.data.date;
 		<div class="prose">
 			<div class="title">
 				<h1>{post.data.title}</h1>
-				{postDate && (
-					<div class="date">
-						<FormattedDate date={postDate} />
-						{post.data.updatedDate && (
-							<div class="last-updated-on">
-								Last updated on <FormattedDate date={post.data.updatedDate} />
-							</div>
-						)}
-					</div>
-				)}
+				{
+					postDate && (
+						<div class="date">
+							<FormattedDate date={postDate} />
+							{post.data.updatedDate && (
+								<div class="last-updated-on">
+									Last updated on <FormattedDate date={post.data.updatedDate} />
+								</div>
+							)}
+						</div>
+					)
+				}
 				{post.data.author && <p class="author">By {post.data.author}</p>}
 				<hr />
 			</div>
