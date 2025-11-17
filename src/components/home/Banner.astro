@@ -1,0 +1,68 @@
+---
+import Sky from "@/assets/home/sky.webp";
+---
+
+
+
+<!-- <img src={IndeSky.src} class="infinity-shape" alt="Everyone's here" /> -->
+<div class="banner-wrapper" style={`background-image: url(${Sky.src});`}>
+    <section>
+        <p>在這裡你可以</p>
+
+        <ul class="bullets">
+            <li class="first">學習基礎軟體工程</li>
+            <li class="first">專案管理技巧</li>
+
+            <li>伺服器管理與架設網站能力</li>
+            <li>擁有自己的課外專案經驗</li>
+            <li>學到資工系不會教的實用技能</li>
+            <li>修課 & 實習經驗交流分享</li>
+            <li>認識一群很棒的人</li>
+        </ul>
+    </section>
+</div>
+<style>
+    p{
+        margin-bottom: 1.5rem;
+    }
+    li {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: rgba(67, 76, 94, 1);
+        padding: 0.5rem 0.75rem;
+        background-color:rgba(236, 239, 244, 1) ;
+
+    }
+    .banner-wrapper {
+        width: 100%;
+        /* background-size: contain; */
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    section {
+        max-width: 600px;
+        margin: auto;
+        padding: 2rem;
+    }
+    .bullets {
+        list-style: none;
+   
+    }
+
+    .bullets li {
+        display: block; 
+        margin-bottom:  1rem ;
+        
+        width: fit-content; 
+    }
+
+    
+    .bullets li.first {
+        display: inline-block; 
+        margin-right: 0.75rem;
+    }
+
+    
+
+</style>
