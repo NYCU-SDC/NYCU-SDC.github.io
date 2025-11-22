@@ -1,0 +1,295 @@
+---
+const events = [
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	},
+	{
+		date: "1992 年 4 月",
+		desc: "交大計算機中心啟用宿舍網路，涵蓋兩校區，13 棟宿舍、1000 間寢室。"
+	}
+];
+---
+
+<div class="top-bar">
+	<button class="arrow-btn" data-arrow="prev" aria-label="上一個">
+		<span class="arrow-icon">‹</span>
+	</button>
+
+	<div class="timeline-line-wrapper">
+		<div class="timeline-line">
+			<div class="timeline-progress" data-progress></div>
+		</div>
+	</div>
+
+	<button class="arrow-btn" data-arrow="next" aria-label="下一個">
+		<span class="arrow-icon">›</span>
+	</button>
+</div>
+
+<div class="events-viewport">
+	<div class="event-line"></div>
+	<div class="events-track" data-track>
+		{
+			events.map(e => (
+				<article class="event-card">
+					<div class="event-dot" />
+					<div class="event-date">{e.date}</div>
+					<p class="event-desc">{e.desc}</p>
+					<p class="event-desc">{e.desc}</p>
+				</article>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	:root {
+		--timeline-height: 2px;
+		--progress-height: 4px;
+		--dot-size: 14px;
+		--card-width: 270px;
+		--card-gap: 1rem;
+	}
+
+	.top-bar {
+		position: relative;
+		max-width: 600px;
+		margin: auto;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 40px;
+	}
+
+	.arrow-btn {
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		border: 1px rgba(59, 66, 82, 1) solid;
+		background: rgba(236, 239, 244, 1);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		margin: 0 1rem;
+		font-size: 16px;
+		line-height: 2px;
+		transition:
+			background 0.2s,
+			transform 0.2s,
+			opacity 0.2s;
+	}
+
+	.arrow-btn:hover:not(.disabled) {
+		background: rgba(236, 239, 244, 0.7);
+		transform: translateY(-1px);
+	}
+
+	.arrow-btn.disabled {
+		opacity: 0.4;
+		cursor: default;
+	}
+
+	.arrow-icon {
+		display: block;
+		transform: translateY(-1px);
+	}
+
+	.timeline-line-wrapper {
+		position: relative;
+		flex: 1;
+		max-width: 300px;
+		height: 2rem;
+		display: flex;
+		align-items: center;
+	}
+
+	.timeline-line {
+		position: relative;
+		width: 100%;
+		height: var(--timeline-height);
+		background: rgba(216, 222, 233, 1);
+		overflow: hidden;
+	}
+
+	.timeline-progress {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: var(--progress-height);
+		width: 100%;
+		background: rgba(94, 129, 172, 1);
+		transform-origin: left center;
+		transform: scaleX(0);
+		transition: transform 0.25s ease-out;
+	}
+
+	.event-line {
+		width: 100%;
+		height: var(--timeline-height);
+		background-color: rgba(94, 129, 172, 1);
+		overflow-x: visible;
+	}
+	.events-viewport {
+		position: relative;
+		width: 100%;
+		overflow: scroll; 
+
+		scrollbar-width: none;
+		padding-top: 1.75rem;
+	}
+
+	.events-track {
+		display: flex;
+		column-gap: 1rem;
+		transition: transform 0.35s ease-out;
+		will-change: transform;
+		padding-left: 1rem;
+		padding-top: 1rem;
+	}
+
+	.event-card {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		gap: 1rem;
+		flex: 0 0 var(--card-width);
+		max-width: var(--card-width);
+	}
+
+	.event-dot {
+		position: absolute;
+		top: -1.6rem;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 50%;
+		border: 1px solid rgba(129, 161, 193, 1);
+		background-color: #fff;
+		/* background-color: rgba(94, 129, 172, 1); */
+	}
+	
+	.event-dot::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 9px; 
+		height: 9px;
+		border-radius: 50%;
+		background: rgba(94, 129, 172, 1);
+		transform: translate(-50%, -50%);
+	}
+	.event-date {
+		font-size: 1.5rem;
+		font-weight: 400;
+		color: rgba(59, 66, 82, 1);
+	}
+
+	.event-desc {
+		font-size: 1rem;
+		line-height: 1.25;
+		color: rgba(59, 66, 82, 1);
+	}
+
+	@media (max-width: 768px) {
+		:root {
+			--card-width: 220px;
+			--card-gap: 32px;
+		}
+
+		.timeline-root {
+			padding-inline: 16px;
+		}
+
+		.timeline-line-wrapper {
+			max-width: 100%;
+		}
+	}
+</style>
+
+<script type="module">
+	document.addEventListener("DOMContentLoaded", () => {
+		const track = document.querySelector("[data-track]");
+		const cards = document.querySelectorAll(".event-card");
+		const progress = document.querySelector("[data-progress]");
+		const prevBtn = document.querySelector('[data-arrow="prev"]');
+		const nextBtn = document.querySelector('[data-arrow="next"]');
+		if (!track || cards.length === 0 || !progress || !prevBtn || !nextBtn) return;
+
+		let index = 0;
+		const maxIndex = Math.max(0, cards.length - 1);
+
+		function clampIndex(i) {
+			return Math.min(Math.max(i, 0), maxIndex);
+		}
+
+		function updateButtons() {
+			prevBtn.classList.toggle("disabled", index === 0);
+			nextBtn.classList.toggle("disabled", index === maxIndex);
+		}
+
+		function updateTrack() {
+			const firstCard = cards[0];
+			const cardWidth = firstCard.offsetWidth;
+			const style = window.getComputedStyle(track);
+			const gap = parseFloat(style.columnGap || "0");
+			const offset = -index * (cardWidth + gap);
+			track.style.transform = `translateX(${offset}px)`;
+		}
+
+		function updateProgress() {
+			const ratio = maxIndex === 0 ? 0 : index / maxIndex;
+			progress.style.transform = `scaleX(${ratio})`;
+		}
+
+		function updateAll() {
+			updateButtons();
+			updateTrack();
+			updateProgress();
+		}
+
+		prevBtn.addEventListener("click", () => {
+			if (index <= 0) return;
+			index = clampIndex(index - 1);
+			updateAll();
+		});
+
+		nextBtn.addEventListener("click", () => {
+			if (index >= maxIndex) return;
+			index = clampIndex(index + 1);
+			updateAll();
+		});
+		window.addEventListener("resize", () => updateTrack());
+		updateAll();
+	});
+</script>

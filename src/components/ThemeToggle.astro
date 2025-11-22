@@ -29,7 +29,9 @@
 		align-items: center;
 		justify-content: center;
 		color: var(--nord2);
-		transition: color 0.2s ease, transform 0.2s ease;
+		transition:
+			color 0.2s ease,
+			transform 0.2s ease;
 		border-radius: 0.5rem;
 	}
 
@@ -60,37 +62,37 @@
 
 	function toggleTheme() {
 		const root = document.documentElement;
-		const currentTheme = root.classList.contains('dark') ? 'light' : 'dark';
-		
-		root.classList.toggle('dark');
-		localStorage.setItem('theme', currentTheme);
+		const currentTheme = root.classList.contains("dark") ? "light" : "dark";
+
+		root.classList.toggle("dark");
+		localStorage.setItem("theme", currentTheme);
 	}
 
 	function setupThemeToggle() {
-		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-		
+		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
 		// Remove old media query listener if it exists
 		if (mediaQueryListener) {
-			mediaQuery.removeEventListener('change', mediaQueryListener);
+			mediaQuery.removeEventListener("change", mediaQueryListener);
 		}
 
 		// Add click handler (button is recreated on each page load, so no need to remove)
-		document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+		document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
 
 		// Listen for system theme changes
 		mediaQueryListener = () => {
-			const theme = localStorage.getItem('theme');
-			if (theme === 'system' || !theme) {
+			const theme = localStorage.getItem("theme");
+			if (theme === "system" || !theme) {
 				const root = document.documentElement;
-				root.classList.toggle('dark', mediaQuery.matches);
+				root.classList.toggle("dark", mediaQuery.matches);
 			}
 		};
-		mediaQuery.addEventListener('change', mediaQueryListener);
+		mediaQuery.addEventListener("change", mediaQueryListener);
 	}
 
 	// Initialize on first load
 	setupThemeToggle();
 
 	// Reinitialize after each page transition
-	document.addEventListener('astro:page-load', setupThemeToggle);
+	document.addEventListener("astro:page-load", setupThemeToggle);
 </script>

@@ -16,7 +16,7 @@
 </section>
 <style>
 	section {
-		max-width: var(--content-width);
+		max-width: var(--max-width);
 		margin: auto;
 		display: flex;
 		align-items: stretch;
@@ -27,6 +27,7 @@
 	.member-left {
 		display: flex;
 		flex-direction: column;
+
 		gap: 1.75rem;
 		flex: 13;
 	}
@@ -40,8 +41,11 @@
 	.card {
 		border-radius: 16px;
 		border: 4px solid rgba(216, 222, 233, 1);
-		min-height: 5rem;
+		min-height: 8rem;
 		padding: 2rem 1.5rem 1.2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
 	}
 
 	.member-num {
