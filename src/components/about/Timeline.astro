@@ -237,39 +237,39 @@ const events = [
 	}
 </style>
 
-<script type="module">
-	document.addEventListener("DOMContentLoaded", () => {
-		const track = document.querySelector("[data-track]");
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const track = document.querySelector("[data-track]") as HTMLElement | null;
 		const cards = document.querySelectorAll(".event-card");
-		const progress = document.querySelector("[data-progress]");
-		const prevBtn = document.querySelector('[data-arrow="prev"]');
-		const nextBtn = document.querySelector('[data-arrow="next"]');
+		const progress = document.querySelector("[data-progress]") as HTMLElement | null;
+		const prevBtn = document.querySelector('[data-arrow="prev"]') as HTMLElement | null;
+		const nextBtn = document.querySelector('[data-arrow="next"]') as HTMLElement | null;
 		if (!track || cards.length === 0 || !progress || !prevBtn || !nextBtn) return;
 
 		let index = 0;
 		const maxIndex = Math.max(0, cards.length - 1);
 
-		function clampIndex(i) {
+		function clampIndex(i: number): number {
 			return Math.min(Math.max(i, 0), maxIndex);
 		}
 
 		function updateButtons() {
-			prevBtn.classList.toggle("disabled", index === 0);
-			nextBtn.classList.toggle("disabled", index === maxIndex);
+			prevBtn!.classList.toggle("disabled", index === 0);
+			nextBtn!.classList.toggle("disabled", index === maxIndex);
 		}
 
 		function updateTrack() {
-			const firstCard = cards[0];
+			const firstCard = cards[0] as HTMLElement;
 			const cardWidth = firstCard.offsetWidth;
-			const style = window.getComputedStyle(track);
+			const style = window.getComputedStyle(track!);
 			const gap = parseFloat(style.columnGap || "0");
 			const offset = -index * (cardWidth + gap);
-			track.style.transform = `translateX(${offset}px)`;
+			track!.style.transform = `translateX(${offset}px)`;
 		}
 
 		function updateProgress() {
 			const ratio = maxIndex === 0 ? 0 : index / maxIndex;
-			progress.style.transform = `scaleX(${ratio})`;
+			progress!.style.transform = `scaleX(${ratio})`;
 		}
 
 		function updateAll() {
