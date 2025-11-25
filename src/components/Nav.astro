@@ -77,7 +77,7 @@ const currentPath = Astro.url.pathname;
 
 	.hamburger {
 		display: none;
-    	flex-direction: column;
+		flex-direction: column;
 		gap: 0.32rem;
 		background: none;
 		border: none;
@@ -193,7 +193,9 @@ const currentPath = Astro.url.pathname;
 		}
 
 		.nav-links.transitioning {
-			transition: transform 0.3s ease, opacity 0.3s ease;
+			transition:
+				transform 0.3s ease,
+				opacity 0.3s ease;
 		}
 
 		.nav-links.active {
@@ -218,8 +220,8 @@ const currentPath = Astro.url.pathname;
 
 	@media (max-width: 480px) {
 		.nav-container {
-      		padding: 1rem;
-    	}
+			padding: 1rem;
+		}
 	}
 </style>
 <script>
@@ -234,7 +236,7 @@ const currentPath = Astro.url.pathname;
 
 		newHamburger.addEventListener("click", () => {
 			navLinks.classList.add("transitioning");
-			
+
 			requestAnimationFrame(() => {
 				newHamburger.classList.toggle("active");
 				navLinks.classList.toggle("active");
@@ -245,7 +247,7 @@ const currentPath = Astro.url.pathname;
 		links.forEach(link => {
 			link.addEventListener("click", () => {
 				navLinks.classList.add("transitioning");
-				
+
 				requestAnimationFrame(() => {
 					newHamburger.classList.remove("active");
 					navLinks.classList.remove("active");
@@ -253,11 +255,11 @@ const currentPath = Astro.url.pathname;
 			});
 		});
 
-		document.addEventListener("click", (e) => {
+		document.addEventListener("click", e => {
 			const target = e.target as HTMLElement;
 			if (!target.closest("nav")) {
 				navLinks.classList.add("transitioning");
-				
+
 				requestAnimationFrame(() => {
 					newHamburger.classList.remove("active");
 					navLinks.classList.remove("active");

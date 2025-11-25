@@ -11,8 +11,8 @@ export default defineConfig({
 	},
 	integrations: [sitemap({})],
 	markdown: {
-    shikiConfig: {
-      theme: 'nord'
-    }
-  }
+		shikiConfig: {
+			theme: "nord"
+		}
+	}
 });
