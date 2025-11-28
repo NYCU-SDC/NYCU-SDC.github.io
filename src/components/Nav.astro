@@ -13,12 +13,11 @@ const currentPath = Astro.url.pathname;
 		<span></span>
 	</button>
 	<ul class="nav-links" id="nav-links">
-		<div class="mobile-menu-header">
-			<span class="mobile-logo">NYCU SDC</span>
-			<ThemeToggle />
-		</div>
-		<li>
+		<li class="nav-item-with-toggle">
 			<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
+			<div class="mobile-theme-toggle">
+				<ThemeToggle />
+			</div>
 		</li>
 		<li>
 			<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
@@ -152,7 +151,30 @@ const currentPath = Astro.url.pathname;
 		font-weight: 700;
 	}
 
+	.nav-item-with-toggle {
+		display: flex;
+		align-items: center;
+	}
+
+	.mobile-theme-toggle {
+		display: none;
+	}
+
 	@media (max-width: 768px) {
+		nav {
+			border-radius: 2rem;
+			transition:
+				background-color 0.3s ease,
+				border-color 0.3s ease,
+				border-radius 0.3s ease,
+				border-bottom 0.3s ease;
+		}
+
+		nav:has(.nav-links.active),
+		nav.expanded {
+			border-radius: 2rem 2rem 0 0;
+			border-bottom: none;
+		}
 		.hamburger {
 			display: flex;
 		}
@@ -175,18 +197,26 @@ const currentPath = Astro.url.pathname;
 			display: none;
 		}
 
+		.mobile-theme-toggle {
+			display: block;
+			margin-left: auto;
+		}
+
 		.nav-links {
-			position: fixed;
-			top: 6rem;
-			left: 50%;
-			width: 100%;
-			transform: translate(-50%, -150%);
+			position: absolute;
+			top: 100%;
+			left: -1px;
+			right: -1px;
+			width: auto;
+			transform: scaleY(0);
+			transform-origin: top;
 			background: var(--mobile-nav-bg);
 			border: 1px solid var(--nord5);
+			border-top: none;
 			flex-direction: column;
 			gap: 0;
-			padding: 2rem;
-			border-radius: 2rem;
+			padding: 1rem 2rem 2rem;
+			border-radius: 0 0 2rem 2rem;
 			backdrop-filter: blur(10px);
 			opacity: 0;
 			pointer-events: none;
@@ -199,7 +229,7 @@ const currentPath = Astro.url.pathname;
 		}
 
 		.nav-links.active {
-			transform: translate(-50%, 0);
+			transform: scaleY(1);
 			opacity: 1;
 			pointer-events: auto;
 		}
@@ -228,8 +258,9 @@ const currentPath = Astro.url.pathname;
 	function initNav() {
 		const hamburger = document.getElementById("hamburger");
 		const navLinks = document.getElementById("nav-links");
+		const nav = document.querySelector("nav");
 
-		if (!hamburger || !navLinks) return;
+		if (!hamburger || !navLinks || !nav) return;
 
 		const newHamburger = hamburger.cloneNode(true) as HTMLElement;
 		hamburger.parentNode?.replaceChild(newHamburger, hamburger);
@@ -240,6 +271,7 @@ const currentPath = Astro.url.pathname;
 			requestAnimationFrame(() => {
 				newHamburger.classList.toggle("active");
 				navLinks.classList.toggle("active");
+				nav.classList.toggle("expanded");
 			});
 		});
 
@@ -251,6 +283,7 @@ const currentPath = Astro.url.pathname;
 				requestAnimationFrame(() => {
 					newHamburger.classList.remove("active");
 					navLinks.classList.remove("active");
+					nav.classList.remove("expanded");
 				});
 			});
 		});
@@ -263,6 +296,7 @@ const currentPath = Astro.url.pathname;
 				requestAnimationFrame(() => {
 					newHamburger.classList.remove("active");
 					navLinks.classList.remove("active");
+					nav.classList.remove("expanded");
 				});
 			}
 		});
