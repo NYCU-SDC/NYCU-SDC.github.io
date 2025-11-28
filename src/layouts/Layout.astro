@@ -15,7 +15,7 @@ const {
 	title = "交大軟體開發社 NYCU Student Development Club",
 	description = "我們是陽明交大軟體開發社（NYCU SDC），旨在聚集交清人才，加速推動兩校在資訊領域的發展，同時引領更多的新人成為人才，無限循環。",
 	ogImage = "/og-image.webp",
-	hideNav = false
+	hideNav = false,
 } = Astro.props;
 
 const siteUrl = "https://sdc.nycu.club/";
@@ -141,15 +141,27 @@ const fullOgImage = new URL(ogImage, siteUrl).toString();
 		</style>
 		<ClientRouter />
 		<script>
-			import Lenis from "lenis";
-			const lenis = new Lenis({
-				autoRaf: true,
-				anchors: true
-			});
+            import Lenis from "lenis";
 
-			document.addEventListener("astro:page-load", () => {
-				if (!window.location.href.includes("#")) lenis.scrollTo(0, { immediate: true });
-			});
-		</script>
+            const disablePath = ["/blog/editor"];
+
+            let lenis: Lenis | null = null;
+            
+            document.addEventListener("astro:page-load", () => {
+                if (!disablePath.includes(window.location.pathname)) {
+                    if (!lenis) {
+                        lenis = new Lenis({
+                            anchors: true
+                        });
+                    }
+
+                    if (!window.location.href.includes("#")) lenis.scrollTo(0, { immediate: true });
+                } else {
+                    lenis?.destroy();
+                }
+            });
+
+            
+        </script>
 	</body>
 </html>

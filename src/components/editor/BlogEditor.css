@@ -1,0 +1,158 @@
+h1 {
+    text-align: center;
+}
+.editor-block {
+    background-color: var(--nord1);
+    border-radius: 1rem;
+}
+.editor-sidebar {
+    display: flex;
+    flex-direction: column;
+    max-width: 21.75rem;
+    flex: 1;
+}
+.editor-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 50.5rem;
+    flex: 1;
+}
+.editor-blog-list {
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem 1.25rem;
+    flex: 1;
+    gap: 1.5rem;
+    min-height: 0;
+}
+.editor-blog-selector {
+    display: flex;
+    gap: 0.75rem;
+}
+.editor-radio-label {
+    display: block;
+    background-color: var(--nord3);
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    flex: 1;
+    padding: 0.25rem;
+}
+.editor-radio-label:hover {
+    background-color: var(--nord2);
+}
+.editor-radio-label:has(.editor-radio:checked) {
+    background-color: var(--nord10);
+}
+.editor-radio-label:has(.editor-radio:checked):hover {
+    background-color: var(--nord9);
+}
+.editor-radio {
+    all: unset;
+    flex: 1;
+}
+.editor-list-title {
+    font-size: 1.5rem;
+}
+.editor-blog-button-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+.post-button {
+    all: unset;
+    background: var(--nord3);
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.post-button:hover {
+    background: var(--nord2);
+}
+.editor-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.75rem;
+    padding: 1.75rem 3rem;
+    gap: 1.25rem;
+}
+.post-image {
+    background: var(--nord6);
+    height: 8.86rem;
+    max-width: 100%;
+    width: fit-content;
+    display: block;
+    border-radius: 0.5rem;
+}
+.editor-title {
+    display: flex;
+    padding: 0 1.5rem;
+    min-height: 4.25rem;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.editor-title-input {
+    all: unset;
+    width: 0;
+    flex: 1;
+}
+.editor-post {
+    margin-top: 1.5rem;
+    padding: 3rem 6rem;
+    flex: 1;
+}
+.editor-button {
+    all: unset;
+    padding: 0.5rem 1rem;
+    background-color: var(--nord3);
+    color: var(--nord6);
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+}
+.editor-button:hover {
+    background: var(--nord2);
+}
+.editor-button.secondary {
+    background: var(--nord10);
+}
+.milkdown {
+    --crepe-color-background: var(--nord1);
+    --crepe-color-on-background: var(--nord6);
+    --crepe-color-surface: var(--nord0);
+    --crepe-color-surface-low: var(--nord0);
+    --crepe-color-on-surface: var(--nord4);
+    --crepe-color-on-surface-variant: var(--nord4);
+    --crepe-color-outline: var(--nord5);
+    --crepe-color-primary: var(--nord4);
+    --crepe-color-secondary: var(--nord2);
+    --crepe-color-on-secondary: var(--nord10);
+    --crepe-color-inverse: var(--nord10);
+    --crepe-color-on-inverse: var(--nord7);
+    --crepe-color-inline-code: var(--nord11);
+    --crepe-color-error: var(--nord11);
+    --crepe-color-hover: var(--nord1);
+    --crepe-color-selected: var(--nord3);
+    --crepe-color-inline-area: var(--nord2);
+
+    --crepe-font-title: inherit;
+    --crepe-font-default: inherit;
+    --crepe-font-code: "FiraCode", Menlo, Monaco, "Courier New", Courier, monospace;
+
+    --crepe-shadow-1: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 1px 3px 1px rgba(255, 255, 255, 0.15);
+    --crepe-shadow-2: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 2px 6px 2px rgba(255, 255, 255, 0.15);
+}
+.ProseMirror {
+    padding: 0 !important;
+}
