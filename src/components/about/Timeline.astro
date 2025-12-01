@@ -239,11 +239,14 @@ const events = [
 
 <script>
 	document.addEventListener("astro:page-load", () => {
+		if (!window.location.pathname.includes("/about")) {
+			return;
+		}
 		const track = document.querySelector("[data-track]") as HTMLElement | null;
 		const cards = document.querySelectorAll(".event-card");
 		const progress = document.querySelector("[data-progress]") as HTMLElement | null;
-		const prevBtn = document.querySelector('[data-arrow="prev"]') as HTMLElement | null;
-		const nextBtn = document.querySelector('[data-arrow="next"]') as HTMLElement | null;
+		const prevBtn = document.querySelector('[data-arrow="prev"]') as HTMLButtonElement | null;
+		const nextBtn = document.querySelector('[data-arrow="next"]') as HTMLButtonElement | null;
 		if (!track || cards.length === 0 || !progress || !prevBtn || !nextBtn) return;
 
 		let index = 0;
