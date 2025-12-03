@@ -1,8 +1,11 @@
 ---
-import Group from "@/assets/home/group.webp";
+import GroupLight from "@/assets/home/group.webp"; // 亮色模式背景圖
+import GroupDark from "@/assets/home/group.webp"; // 您可以替換為暗色模式的圖片
 ---
 
 <section>
+	<div class="background-light"></div>
+	<div class="background-dark"></div>
 	<div class="container">
 		<p>在這裡你可以</p>
 		<ul>
@@ -16,19 +19,53 @@ import Group from "@/assets/home/group.webp";
 		</ul>
 	</div>
 </section>
-<style define:vars={{ "image-url": `url(${Group.src})` }}>
+<style
+	define:vars={{
+		"light-image-url": `url("${GroupLight.src}")`,
+		"dark-image-url": `url("${GroupDark.src}")`
+	}}
+>
 	section {
-		background-image: linear-gradient(#fff, #ffffffa2 30%, #ffffffa2 70%, #fff), var(--image-url);
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat, no-repeat;
-		background-size: cover;
-		border-radius: 16px;
+		position: relative;
 		margin: 0 auto;
 		padding: 5rem 2rem;
+		overflow: hidden;
+	}
+
+	.background-light,
+	.background-dark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		transition: opacity 0.3s cubic-bezier(0.32, 0.1, 0.05, 0.96);
+	}
+
+	.background-light {
+		background-image: linear-gradient(#fff, #ffffffa2 30%, #ffffffa2 70%, #fff), var(--light-image-url);
+		opacity: 1;
+	}
+
+	.background-dark {
+		background-image: linear-gradient(#2e3440, #2e3440a2 30%, #2e3440a2 70%, #2e3440), var(--dark-image-url);
+		opacity: 0;
+	}
+
+	:global(.dark) .background-light {
+		opacity: 0;
+	}
+
+	:global(.dark) .background-dark {
+		opacity: 1;
 	}
 
 	.container {
+		position: relative;
+		z-index: 1;
 		max-width: 600px;
 		margin: auto;
 	}
@@ -47,7 +84,7 @@ import Group from "@/assets/home/group.webp";
 		font-weight: 700;
 		color: rgba(67, 76, 94, 1);
 		padding: 0.5rem 0.75rem;
-		background-color: var(--nord6);
+		background-color: var(--nord17);
 		margin-bottom: 1rem;
 		width: fit-content;
 	}

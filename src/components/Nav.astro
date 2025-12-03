@@ -122,7 +122,6 @@ const currentPath = Astro.url.pathname;
 		padding: 0;
 	}
 
-	/* 在接近手機模式的螢幕寬度時預先隱藏 */
 	@media (max-width: 800px) {
 		.nav-links {
 			opacity: 0;
@@ -277,12 +276,6 @@ const currentPath = Astro.url.pathname;
 
 		.logo-text {
 			font-size: 1.25rem;
-		}
-	}
-
-	@media (max-width: 480px) {
-		.nav-container {
-			padding: 1rem;
 		}
 	}
 </style>
