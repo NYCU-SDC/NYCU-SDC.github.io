@@ -3,32 +3,39 @@ import ThemeToggle from "@/components/ThemeToggle.astro";
 const currentPath = Astro.url.pathname;
 ---
 
-<nav>
-	<a href="/" class="logo">
-		<span class="logo-text">NYCU SDC</span>
-	</a>
-	<ul class="nav-links">
-		<li>
-			<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
-		</li>
-		<li>
-			<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
-		</li>
-		<li>
-			<a href="https://sdc-nycu.notion.site/welcome" target="_blank" rel="noopener">Notion</a>
-		</li>
-		<ThemeToggle />
-	</ul>
+<nav id="nav" class="nav-container">
+	<div class="nav-content">
+		<a href="/" class="logo">
+			<span class="logo-text">NYCU SDC</span>
+		</a>
+		<button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<ul class="nav-links" id="nav-links">
+			<li class="mobile-nav-row">
+				<a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>Blog</a>
+				<div class="mobile-theme-toggle">
+					<ThemeToggle />
+				</div>
+			</li>
+			<li>
+				<a href="/about/" class:list={[{ active: currentPath === "/about/" }]}>About</a>
+			</li>
+			<li>
+				<a href="https://sdc-nycu.notion.site/welcome" target="_blank" rel="noopener">Notion</a>
+			</li>
+			<li class="desktop-theme-toggle">
+				<ThemeToggle />
+			</li>
+		</ul>
+	</div>
 </nav>
 
 <style>
-	nav {
+	.nav-container {
 		position: fixed;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin: 0 auto;
-		padding: 1rem 2rem;
 		left: 50%;
 		transform: translateX(-50%);
 		top: 1.5rem;
@@ -37,12 +44,24 @@ const currentPath = Astro.url.pathname;
 		border-radius: 999px;
 		backdrop-filter: blur(10px);
 		background-color: var(--nav-bg);
-		height: 3.875rem;
 		max-width: 866px;
 		width: calc(100% - 3rem);
+		overflow: hidden;
 		transition:
+			height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+			border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
 			background-color 0.3s ease,
 			border-color 0.3s ease;
+		height: 3.875rem;
+	}
+
+	.nav-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem 2rem;
+		height: 100%;
+		box-sizing: border-box;
 	}
 
 	.logo {
@@ -56,12 +75,42 @@ const currentPath = Astro.url.pathname;
 		font-size: 1.5rem;
 		font-weight: 700;
 		color: var(--nord1);
-
 		transition: color 0.2s ease;
 	}
 
 	.logo:hover .logo-text {
 		color: var(--nord10);
+	}
+
+	.hamburger {
+		display: none;
+		flex-direction: column;
+		gap: 0.32rem;
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	.hamburger span {
+		width: 25px;
+		height: 3px;
+		background: var(--nord1);
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 0.125rem;
+		transform-origin: center;
+	}
+
+	.hamburger.active span:nth-child(1) {
+		transform: rotate(45deg) translateY(0.7rem);
+	}
+
+	.hamburger.active span:nth-child(2) {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	.hamburger.active span:nth-child(3) {
+		transform: rotate(-45deg) translateY(-0.7rem);
 	}
 
 	.nav-links {
@@ -71,6 +120,18 @@ const currentPath = Astro.url.pathname;
 		gap: 2rem;
 		margin: 0;
 		padding: 0;
+	}
+
+	/* 在接近手機模式的螢幕寬度時預先隱藏 */
+	@media (max-width: 800px) {
+		.nav-links {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transition: 
+				opacity 0.2s ease,
+				visibility 0.2s ease;
+		}
 	}
 
 	.nav-links a {
@@ -106,15 +167,112 @@ const currentPath = Astro.url.pathname;
 		font-weight: 700;
 	}
 
+	.mobile-theme-toggle {
+		display: none;
+	}
+
+	.mobile-nav-row {
+		display: contents;
+	}
+
 	@media (max-width: 768px) {
 		.nav-container {
-			padding: 1rem;
-			flex-direction: column;
-			gap: 1rem;
+			border-radius: 2rem;
+		}
+
+		.nav-container.expanded {
+			height: 15rem;
+			border-radius: 2rem 2rem 2rem 2rem;
+		}
+
+		.nav-content {
+			position: relative;
+			padding: 1rem 2rem;
+		}
+
+		.nav-content .logo,
+		.nav-content .hamburger {
+			position: absolute;
+			top: 1.9rem;
+			transform: translateY(-50%);
+		}
+
+		.nav-content .logo {
+			left: 2rem;
+		}
+
+		.nav-content .hamburger {
+			right: 2rem;
+			display: flex;
 		}
 
 		.nav-links {
-			gap: 1.5rem;
+			flex-direction: column;
+			gap: 0.125rem;
+			margin-top: 3rem;
+			margin-left: -2rem;
+			margin-right: -2rem;
+			padding: 0 2rem;
+			width: calc(100% + 4rem);
+			opacity: 0;
+			transform: translateY(0);
+			transition:
+				opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+				transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			transition-delay: 0s;
+			pointer-events: none;
+		}
+
+		.nav-container.expanded .nav-links {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(-0.3rem);
+			transition:
+				opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+				visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+				transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			transition-delay: 0.2s;
+			pointer-events: auto;
+		}
+
+		.nav-links li {
+			width: 100%;
+		}
+
+		.nav-links a {
+			display: block;
+			font-size: 1.2rem;
+			padding: 0.75rem 0;
+			text-align: left;
+		}
+
+		.mobile-nav-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			position: relative;
+		}
+
+		.mobile-nav-row a {
+			margin: 0;
+			padding: 0.75rem 0;
+			/* flex-shrink: 0; */
+		}
+
+		.mobile-nav-row .mobile-theme-toggle {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.desktop-theme-toggle {
+			display: none;
+		}
+
+		.mobile-theme-toggle {
+			display: block;
 		}
 
 		.logo-text {
@@ -123,9 +281,43 @@ const currentPath = Astro.url.pathname;
 	}
 
 	@media (max-width: 480px) {
-		.nav-links {
-			gap: 1rem;
-			font-size: 0.9rem;
+		.nav-container {
+			padding: 1rem;
 		}
 	}
 </style>
+<script>
+	function initNav() {
+		const hamburger = document.getElementById("hamburger");
+		const nav = document.getElementById("nav");
+
+		if (!hamburger || !nav) return;
+
+		const newHamburger = hamburger.cloneNode(true) as HTMLElement;
+		hamburger.parentNode?.replaceChild(newHamburger, hamburger);
+
+		newHamburger.addEventListener("click", () => {
+			newHamburger.classList.toggle("active");
+			nav.classList.toggle("expanded");
+		});
+
+		const links = nav.querySelectorAll(".nav-links a");
+		links.forEach(link => {
+			link.addEventListener("click", () => {
+				newHamburger.classList.remove("active");
+				nav.classList.remove("expanded");
+			});
+		});
+
+		document.addEventListener("click", (e) => {
+			const target = e.target as HTMLElement;
+			if (!target.closest("#nav")) {
+				newHamburger.classList.remove("active");
+				nav.classList.remove("expanded");
+			}
+		});
+	}
+
+	initNav();
+	document.addEventListener("astro:page-load", initNav);
+</script>

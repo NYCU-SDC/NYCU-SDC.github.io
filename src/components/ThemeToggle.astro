@@ -2,7 +2,7 @@
 // Theme Toggle Component
 ---
 
-<button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+<button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
 	<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 		<circle cx="12" cy="12" r="5"></circle>
 		<line x1="12" y1="1" x2="12" y2="3"></line>
@@ -20,7 +20,7 @@
 </button>
 
 <style>
-	#theme-toggle {
+	.theme-toggle {
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -35,7 +35,7 @@
 		border-radius: 0.5rem;
 	}
 
-	#theme-toggle:hover {
+	.theme-toggle:hover {
 		color: var(--nord10);
 		transform: scale(1.1);
 	}
@@ -48,11 +48,11 @@
 		display: block;
 	}
 
-	:global(.dark) #theme-toggle .sun-icon {
+	:global(.dark) .theme-toggle .sun-icon {
 		display: block;
 	}
 
-	:global(.dark) #theme-toggle .moon-icon {
+	:global(.dark) .theme-toggle .moon-icon {
 		display: none;
 	}
 </style>
