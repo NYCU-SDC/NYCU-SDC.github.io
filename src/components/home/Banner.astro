@@ -18,7 +18,7 @@ import Group from "@/assets/home/group.webp";
 </section>
 <style define:vars={{ "image-url": `url(${Group.src})` }}>
 	section {
-		background-image: linear-gradient(#fff, #ffffffa2 30%, #ffffffa2 70%, #fff), var(--image-url);
+		background-image: linear-gradient(var(--white), color-mix(in srgb, var(--white) 64%, transparent) 30%, color-mix(in srgb, var(--white) 64%, transparent) 70%, var(--white)), var(--image-url);
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat, no-repeat;
@@ -45,7 +45,7 @@ import Group from "@/assets/home/group.webp";
 	li {
 		font-size: 1.75rem;
 		font-weight: 700;
-		color: rgba(67, 76, 94, 1);
+		color: var(--nord2);
 		padding: 0.5rem 0.75rem;
 		background-color: var(--nord6);
 		margin-bottom: 1rem;

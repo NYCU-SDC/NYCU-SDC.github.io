@@ -95,8 +95,8 @@ const events = [
 		width: 25px;
 		height: 25px;
 		border-radius: 50%;
-		border: 1px rgba(59, 66, 82, 1) solid;
-		background: rgba(236, 239, 244, 1);
+		border: 1px var(--nord1) solid;
+		background: var(--nord6);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -111,7 +111,7 @@ const events = [
 	}
 
 	.arrow-btn:hover:not(.disabled) {
-		background: rgba(236, 239, 244, 0.7);
+		background: var(--nord5);
 		transform: translateY(-1px);
 	}
 
@@ -138,7 +138,7 @@ const events = [
 		position: relative;
 		width: 100%;
 		height: var(--timeline-height);
-		background: rgba(216, 222, 233, 1);
+		background: var(--nord4);
 		overflow: hidden;
 	}
 
@@ -148,7 +148,7 @@ const events = [
 		top: 0;
 		height: var(--progress-height);
 		width: 100%;
-		background: rgba(94, 129, 172, 1);
+		background: var(--nord10);
 		transform-origin: left center;
 		transform: scaleX(0);
 		transition: transform 0.25s ease-out;
@@ -157,7 +157,7 @@ const events = [
 	.event-line {
 		width: 100%;
 		height: var(--timeline-height);
-		background-color: rgba(94, 129, 172, 1);
+		background-color: var(--nord10);
 		overflow-x: visible;
 	}
 	.events-viewport {
@@ -193,9 +193,9 @@ const events = [
 		width: 1rem;
 		height: 1rem;
 		border-radius: 50%;
-		border: 1px solid rgba(129, 161, 193, 1);
-		background-color: #fff;
-		/* background-color: rgba(94, 129, 172, 1); */
+		border: 1px solid var(--nord9);
+		background-color: var(--white);
+		/* background-color: var(--nord10); */
 	}
 
 	.event-dot::after {
@@ -206,19 +206,19 @@ const events = [
 		width: 9px;
 		height: 9px;
 		border-radius: 50%;
-		background: rgba(94, 129, 172, 1);
+		background: var(--nord10);
 		transform: translate(-50%, -50%);
 	}
 	.event-date {
 		font-size: 1.5rem;
 		font-weight: 400;
-		color: rgba(59, 66, 82, 1);
+		color: var(--nord1);
 	}
 
 	.event-desc {
 		font-size: 1rem;
 		line-height: 1.25;
-		color: rgba(59, 66, 82, 1);
+		color: var(--nord1);
 	}
 
 	@media (max-width: 768px) {
